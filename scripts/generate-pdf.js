@@ -1,3 +1,4 @@
+//@ts-check
 import { chromium } from "playwright";
 
 const main = async () => {
