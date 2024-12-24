@@ -19,3 +19,7 @@ article.resume {
 
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
+
+.header-item {
+  @apply mr-5 hover:cursor-pointer hover:text-black transition-all duration-500;
+}

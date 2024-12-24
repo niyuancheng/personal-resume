@@ -1,7 +1,7 @@
 ---
 title: 倪袁成的个人简历
 description: 前端简历
-layout: ../layouts/main.astro
+layout: ../layouts/resume.astro
 pdfLink: 倪袁成的个人简历.pdf
 ---
 

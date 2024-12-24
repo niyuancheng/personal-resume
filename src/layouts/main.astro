@@ -1,25 +1,6 @@
 ---
-import "@fontsource/poppins";
-import Download from "../components/Download.astro";
+import Header from "../components/Header.astro";
 import "../styles.css";
-
-type Props = {
-  frontmatter: {
-    title: string;
-    pdfLink: string;
-    noIndex?: boolean;
-    description?: string;
-  };
-};
-
-const { PDF_VIEW, FORCE_THEME = "" } = import.meta.env;
-
-const { title, pdfLink, noIndex, description } = Astro.props.frontmatter as Props["frontmatter"];
-
-const initials = title
-  .split(" ")
-  .map(([initial]) => initial!.toUpperCase())
-  .slice(0, 2);
 ---
 
 <!doctype html>
@@ -28,33 +9,25 @@ const initials = title
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <meta name="description" content={description || title} />
-    {noIndex && <meta name="robots" content="noindex" />}
-    <title>{title}</title>
+    <meta name="description" content="niyuancheng的个人blog" />
+    <title>niyuancheng的个人blog</title>
   </head>
-  <body class={!PDF_VIEW ? "sm:my-14" : ""}>
-    <div class="container mx-auto flex justify-center">
-      <article class="resume relative shadow-2xl">
-        <div
-          class="absolute top-4 rounded-sm bg-indigo-400 px-4 py-1 sm:left-8 sm:top-12"
-        >
-          <div
-            class="flex h-fit select-none flex-col items-center text-sm font-bold"
-          >
-            {initials.map((initial) => <span>{initial}</span>)}
-          </div>
-        </div>
-        {
-          !PDF_VIEW && (
-            <div class="not-prose absolute right-4 top-4">
-              <Download href={pdfLink} />
-            </div>
-          )
-        }
-        <slot />
-      </article>
-    </div>
-    <style></style>
+  <body>
+    <Header />
+    <canvas id="paint" class="absolute w-screen h-screen pointer-events-none"></canvas>
+    <slot></slot>
+    <script>
+      const canvas = document.getElementById("paint") as HTMLCanvasElement;
+      const ctx = canvas.getContext("2d")!;
+      canvas.width = window.innerWidth * window.devicePixelRatio;
+      canvas.height = window.innerHeight * window.devicePixelRatio;
+      for (let i = 0; i < 200; i++) {
+        ctx.beginPath();
+        ctx.fillStyle = "gray";
+        ctx.arc(Math.random() * canvas.width, Math.random() * canvas.height, 1, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.closePath();
+      }
+    </script>
   </body>
 </html>

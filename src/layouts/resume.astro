@@ -1,0 +1,49 @@
+---
+import "@fontsource/poppins";
+import Download from "../components/Download.astro";
+import Main from "./main.astro";
+
+type Props = {
+  frontmatter: {
+    title: string;
+    pdfLink: string;
+    noIndex?: boolean;
+    description?: string;
+  };
+};
+
+const { PDF_VIEW } = import.meta.env;
+
+const { title, pdfLink } = Astro.props.frontmatter as Props["frontmatter"];
+
+const initials = title
+  .split(" ")
+  .map(([initial]) => initial!.toUpperCase())
+  .slice(0, 2);
+---
+
+<Main>
+  <div class={!PDF_VIEW ? "sm:my-14" : ""}>
+    <div class="container mx-auto flex justify-center">
+      <article class="resume relative shadow-2xl">
+        <div
+          class="absolute top-4 rounded-sm bg-indigo-400 px-4 py-1 sm:left-8 sm:top-12"
+        >
+          <div
+            class="flex h-fit select-none flex-col items-center text-sm font-bold"
+          >
+            {initials.map((initial) => <span>{initial}</span>)}
+          </div>
+        </div>
+        {
+          !PDF_VIEW && (
+            <div class="not-prose absolute right-4 top-4">
+              <Download href={pdfLink} />
+            </div>
+          )
+        }
+        <slot />
+      </article>
+    </div>
+  </div>
+</Main>
