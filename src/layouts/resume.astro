@@ -12,8 +12,6 @@ type Props = {
   };
 };
 
-const { PDF_VIEW } = import.meta.env;
-
 const { title, pdfLink } = Astro.props.frontmatter as Props["frontmatter"];
 
 const initials = title
@@ -23,7 +21,7 @@ const initials = title
 ---
 
 <Main>
-  <div class={!PDF_VIEW ? "sm:my-14" : ""}>
+  <div class="sm:my-14 relative z-2">
     <div class="container mx-auto flex justify-center">
       <article class="resume relative shadow-2xl">
         <div
@@ -35,13 +33,9 @@ const initials = title
             {initials.map((initial) => <span>{initial}</span>)}
           </div>
         </div>
-        {
-          !PDF_VIEW && (
-            <div class="not-prose absolute right-4 top-4">
-              <Download href={pdfLink} />
-            </div>
-          )
-        }
+        <div class="not-prose absolute right-4 top-4">
+            <Download href={pdfLink} />
+        </div>
         <slot />
       </article>
     </div>
