@@ -5,12 +5,27 @@
         <a href=".">NiYuancheng Blog</a>
     </div>
     <div class="flex items-center text-gray-500 text-lg">
-        <span class="header-item">
+        <div class="header-item">
             <a href="./blog">Blog</a>
-        </span>
-        <span class="header-item">
+        </div>
+        <div class="header-item">
             <a href="./resume">Resume</a>
-        </span>
-
+        </div>
+        <div class="header-item">
+            <div class="i-icomoon-free:youtube2 youtube" text="xl"></div>
+        </div>
+        <div class="header-item">
+            <div class="i-mdi:github w-26px h-26px github"></div>
+        </div>
     </div>
 </div>
+<script>
+    const youtube = document.querySelector('.youtube')!;
+    youtube.addEventListener('click', () => {
+        window.open('https://www.youtube.com/@novani-mv5dg')
+    })
+    const github = document.querySelector('.github')!;
+    github.addEventListener('click', () => {
+        window.open('https://github.com/niyuancheng')
+    });
+</script>

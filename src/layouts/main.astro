@@ -14,20 +14,13 @@ import "../styles.css";
   </head>
   <body>
     <Header />
-    <canvas id="paint" class="absolute w-screen h-screen pointer-events-none"></canvas>
+    <canvas id="paint" class="absolute w-screen h-screen pointer-events-auto z-1"></canvas>
     <slot></slot>
+
     <script>
-      const canvas = document.getElementById("paint") as HTMLCanvasElement;
-      const ctx = canvas.getContext("2d")!;
-      canvas.width = window.innerWidth * window.devicePixelRatio;
-      canvas.height = window.innerHeight * window.devicePixelRatio;
-      for (let i = 0; i < 200; i++) {
-        ctx.beginPath();
-        ctx.fillStyle = "gray";
-        ctx.arc(Math.random() * canvas.width, Math.random() * canvas.height, 1, 0, 2 * Math.PI);
-        ctx.fill();
-        ctx.closePath();
-      }
+      import { CanvasDotSDK } from "../client-code/canvas-dot";
+      const canvasSDK = new CanvasDotSDK(document.getElementById("paint") as HTMLCanvasElement);
+      canvasSDK.start();
     </script>
   </body>
 </html>
