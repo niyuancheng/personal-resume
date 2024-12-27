@@ -3,6 +3,7 @@ import {
     presetUno, 
     presetAttributify,
     presetIcons,
+    presetWebFonts
 } from 'unocss'
 
 export default defineConfig({
@@ -12,6 +13,9 @@ export default defineConfig({
         presetIcons({
             scale: 1.2,
             warn: true,
+        }),
+        presetWebFonts({
+            provider: 'google'
         })
     ]
 })

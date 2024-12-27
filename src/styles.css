@@ -1,3 +1,7 @@
+html,body {
+  font-family: Jetbrains Mono;
+}
+
 ::selection {
   @apply bg-slate-200;
 }
@@ -22,4 +26,12 @@ article.resume {
 
 .header-item {
   @apply mr-5 hover:cursor-pointer hover:text-black transition-all duration-500;
+}
+
+.follow-item {
+  @apply inline-block underline hover:cursor-pointer flex items-center justify-center cursor-pointer mr-5;
+}
+
+.follow-item svg {
+  @apply w-5 h-5 mr-1;
 }
